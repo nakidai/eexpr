@@ -16,6 +16,9 @@ struct Expression *parse(struct Token tokens[], size_t tokens_length)
         {
             ++tokens;
             tokens_length -= 2;
+        } else
+        {
+            break;
         }
     }
 
