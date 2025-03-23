@@ -22,7 +22,7 @@ struct Expression *parse(struct Token tokens[], size_t tokens_length)
         }
     }
 
-    assert(tokens_length != 0 && "empty parens & unary operators are not supported yet");
+    assert(tokens_length != 0 && "empty parens are not supported yet");
 
     struct Expression *res = malloc(sizeof(*res));
     assert(res != NULL);
@@ -33,7 +33,7 @@ struct Expression *parse(struct Token tokens[], size_t tokens_length)
 
     if (tokens_length == 1)
     {
-        assert(tokens[0].type == NUMBER && "unary operators are not supported yet");
+        assert(tokens[0].type == NUMBER);
         *res = (struct Expression)
         {
             .type = LITERAL,
