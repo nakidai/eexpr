@@ -10,10 +10,13 @@ struct Expression *parse(struct Token tokens[], size_t tokens_length)
 {
     assert(tokens);
 
-    if (tokens_length >= 2 && tokens[0].type == POPEN && tokens[tokens_length - 1].type == PCLOSE)
+    while (tokens_length >= 2)
     {
-        ++tokens;
-        tokens_length -= 2;
+        if (tokens[0].type == POPEN && tokens[tokens_length - 1].type == PCLOSE)
+        {
+            ++tokens;
+            tokens_length -= 2;
+        }
     }
 
     assert(tokens_length != 0 && "empty parens & unary operators are not supported yet");
