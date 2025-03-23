@@ -18,11 +18,16 @@ size_t tokenize(const char *expr, struct Token tokens[], size_t tokens_length)
 
     do
     {
-        if (strchr("0123456789", *expr))
+        switch (*expr)
+        {
+        case '0': case '1': case '2': case '3': case '4':
+        case '5': case '6': case '7': case '8': case '9':
         {
             token[chari++] = *expr;
             assert(chari < sizeof(token) - 1);
-        } else if (strchr(" \t-+*/()", *expr))
+        } break;
+        case ' ': case '\t': case '-': case '+':
+        case '*': case '/': case '(': case ')':
         {
             if (chari)
             {
@@ -35,22 +40,21 @@ size_t tokenize(const char *expr, struct Token tokens[], size_t tokens_length)
                 chari = 0;
             }
 
-            if (strchr("-+*/()", *expr))
+            switch (*expr)
             {
-                switch (*expr)
-                {
-                break; case '-': tokens[tokeni++].type = MINUS;
-                break; case '+': tokens[tokeni++].type = PLUS;
-                break; case '*': tokens[tokeni++].type = ASTERISK;
-                break; case '/': tokens[tokeni++].type = SLASH;
-                break; case '(': tokens[tokeni++].type = POPEN;
-                break; case ')': tokens[tokeni++].type = PCLOSE;
-                }
-                assert(tokeni < tokens_length);
+            break; case '-': tokens[tokeni++].type = MINUS;
+            break; case '+': tokens[tokeni++].type = PLUS;
+            break; case '*': tokens[tokeni++].type = ASTERISK;
+            break; case '/': tokens[tokeni++].type = SLASH;
+            break; case '(': tokens[tokeni++].type = POPEN;
+            break; case ')': tokens[tokeni++].type = PCLOSE;
             }
-        } else
+            assert(tokeni < tokens_length);
+        } break;
+        default:
         {
             assert(!*expr && "invalid character in the expression");
+        } break;
         }
     } while(*++expr != '\0');
 
