@@ -52,8 +52,7 @@ struct Expression *parse(struct Token tokens[], size_t tokens_length)
         } break;
         case PCLOSE:
         {
-            --depth;
-            assert(depth >= 0);
+            assert(--depth >= 0);
         } break;
         case PLUS: case MINUS: 
         {
