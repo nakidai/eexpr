@@ -1,0 +1,11 @@
+README(7)	       Miscellaneous Information Manual		     README(7)
+
+NAME
+     eexpr - execute expression
+
+DESCRIPTION
+     eexpr is a tool that executes a mathematical expression and prints the
+     result.  I've written it for learning how to make AST.  Maybe later I
+     will write a compiler/interperter...
+
+eexpr				March 18, 2025				 eexpr
