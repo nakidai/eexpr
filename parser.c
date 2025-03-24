@@ -87,7 +87,7 @@ struct Expression *parse(struct Token tokens[], size_t tokens_length)
     break; case SLASH: res->type = DIV;
     }
 
-    if ((res->type == SUM || res->type == SUB) && tokens_length - (tokens_length - selected.i) == 0)
+    if ((res->type == SUM || res->type == SUB) && selected.i == 0)
     {
         res->left = malloc(sizeof(*res->left));
         *res->left = (struct Expression)
